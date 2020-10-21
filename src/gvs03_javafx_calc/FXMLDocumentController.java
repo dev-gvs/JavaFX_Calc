@@ -28,19 +28,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        double x, a, b, c, y;
-
         try {
-            x = Double.parseDouble(textFieldX.getText());
-            a = Double.parseDouble(textFieldA.getText());
-            b = Double.parseDouble(textFieldB.getText());
-            c = Double.parseDouble(textFieldC.getText());
+            double x = Double.parseDouble(textFieldX.getText());
+            double a = Double.parseDouble(textFieldA.getText());
+            double b = Double.parseDouble(textFieldB.getText());
+            double c = Double.parseDouble(textFieldC.getText());
 
-            if (x < 4) {
-                y = ((((x * x) + (a * a)) * c) / (2 * b));
-            } else {
-                y = ((x * x * x) * (a - b));
-            }
+            double y = Solver.solve(x, a, b, c);
+
             if ((!Double.isNaN(y)) && (!Double.isInfinite(y))) {
                 labelResult.setText(String.format("Ответ: %.2f", y));
             } else {
